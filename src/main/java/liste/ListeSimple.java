@@ -142,5 +142,4 @@ public class ListeSimple {
         r2.setSuivant(r1.getSuivant());
         r1.setSuivant(temp);
     }
-
 }
