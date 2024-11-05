@@ -89,6 +89,22 @@ public class ListeSimpleTest {
     }
 
     @Test
+    public void supprimePremierElementNotFound() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.supprimePremier(3);
+        assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+    }
+
+    @Test
+    public void supprimePremierSingleElementNotMatching() {
+        listeATester.ajout(1);
+        listeATester.supprimePremier(2);
+        assertEquals("ListeSimple(Noeud(1))", listeATester.toString());
+    }
+
+
+    @Test
     public void supprimePremierEnPremierePosition() {
         listeATester.ajout(1);
         listeATester.ajout(2);
