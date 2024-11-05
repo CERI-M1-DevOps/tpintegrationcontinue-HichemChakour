@@ -63,6 +63,16 @@ public class ListeSimpleTest {
     }
 
     @Test
+    public void testModifiePremierElementNotFound() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.modifiePremier(4, 2);
+        assertNotEquals("2", listeATester.tete.getSuivant().getElement());
+        assertEquals("3", listeATester.tete.getElement());
+    }
+
+    @Test
     public void modifieTous() {
         listeATester.ajout(1);
         listeATester.ajout(2);
