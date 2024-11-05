@@ -252,6 +252,7 @@ public class ListeSimpleTest {
         assertEquals(listeATester.toString(), "ListeSimple(Noeud(1), Noeud(4), Noeud(3), Noeud(2), Noeud(5))");
     }
 
+
     @Test
     public void echangerLePremierNoeudAvecUnAutre() {
         listeATester.ajout(5);

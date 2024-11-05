@@ -26,7 +26,6 @@ jobs:
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
 
 
       - name: Set up JDK 11
