@@ -7,6 +7,8 @@ on:
 
 jobs:
   build:
+  generate-docs:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -40,3 +42,14 @@ jobs:
           -Dsonar.projectKey=$(echo ${{ github.repository }} | sed 's-/-_-')
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Generate Javadoc
+        run: mvn -B javadoc:javadoc
+
+      - name: Deploy Javadoc
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site/apidocs
+
+
