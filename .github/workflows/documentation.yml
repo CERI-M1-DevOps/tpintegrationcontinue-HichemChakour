@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Generate Javadoc
-        run: mvn -B javadoc:javadoc
+        run: mvn -B javadoc::javadoc
 
 
       - name: Deploy to GitHub Pages
