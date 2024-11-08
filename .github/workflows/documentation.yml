@@ -2,10 +2,10 @@ name: Generate and Deploy Documentation
 
 on:
   pull_request:
-    types: [closed]
+    types: [closed, merged]
 
 jobs:
-  generate-docs:
+  deploy:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
@@ -13,25 +13,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          distribution: 'adopt'
+          distribution: 'corretto'
           java-version: '21'
 
-      - name: Cache Maven dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+      - name: Generate java doc
+        run: mvn -B javadoc:javadoc
 
-      - name: Generate Javadoc
-        run: mvn -B javadoc::javadoc
-
-
-      - name: Deploy to GitHub Pages
+      - name: deploy github pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GIT_HICH }}
